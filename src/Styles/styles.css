@@ -1,0 +1,58 @@
+
+
+.card:hover {
+  transform: scale(1.02);
+  transition: .5s ease;
+}
+
+.cardHeading:hover {
+  text-decoration: underline;
+}
+
+.highlightStyles {
+  animation: forwards slide 4s;
+  transform: translateX(37%);
+  
+}
+
+@keyframes slide {
+  0% {
+    color: white;
+  } 
+  100% {
+    color: orange;
+  }
+}
+
+.contactHeading {
+  margin-left: 2em;
+}
+
+.form {
+  color: black;
+  padding: 6px;
+  margin: 2em;
+}
+
+.options {
+  color: black;
+}
+
+
+.submitButton {
+  color: white;
+  box-shadow: 4px 4px 8px rgba(255, 255, 255, .5);
+}
+
+.submitButton:hover {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, .7);
+  color: black;
+}
+
+.navIcons:hover {
+  transform: scale(1.1);
+}
+
+.link:hover {
+  transform: scale(1.1);
+}
