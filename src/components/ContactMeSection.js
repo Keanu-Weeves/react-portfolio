@@ -32,6 +32,7 @@ const ContactMeSection = () => {
       comment: ''
     },
     onSubmit: async (values, { resetForm }) => {
+      console.log("DEBUG: Formik onSubmit fired with values:", values);
       await submit("/", values);
     },
     validationSchema: Yup.object({
