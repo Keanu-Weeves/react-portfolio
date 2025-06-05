@@ -1,11 +1,12 @@
 import React from "react";
 import { Avatar, Heading, VStack } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
-import '../Styles/styles.css';
+import '../styles.css';
+import myProfilePic from '../images/20250605_141325.jpg';
 
 
 //Variables
-const greeting = "Hello, I am Pete!";
+const greeting = "Hello, I am Cody!";
 const bio1 = "A frontend developer";
 const bio2 = "specialised in "
 const highlight = 'React'
@@ -13,8 +14,8 @@ const highlight = 'React'
 //Styles
 const picStyles = {
   border: "1px solid black",
-  height: "80px",
-  width: "80px",
+  height: "100px",
+  width: "100px",
   boxShadow: "5px 5px 10px rgba(0, 0, 0, 1)" 
 }
 
@@ -34,11 +35,11 @@ const LandingSection = () => (
     justifyContent="center"
     alignItems="center"
     isDarkBackground
-    backgroundColor="#2A4365"
+    backgroundColor="#353445"
   >
 
   <VStack>
-    <Avatar style={picStyles} src="https://i.pravatar.cc/150?img=7" />
+    <Avatar style={picStyles} src={myProfilePic} />
       <p style={greetStyles}>{greeting}</p>
       <br></br>
     <Heading >

@@ -2,7 +2,7 @@ import { Heading, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import '../Styles/styles.css';
+import '../styles.css';
 
 
 
@@ -11,10 +11,10 @@ const Card = ({ title, description, imageSrc }) => {
   return (
     <VStack 
     spacing="16px" 
-    background="white"
+    background="a9a9a9"
     borderRadius="8px"
     align="left"
-    boxShadow="10px 10px 10px rgba(0, 0, 0, .5)"
+    boxShadow="0px 0px 18px rgba(255, 165, 0, 1)"
     className="card"
     >
       <Image src={imageSrc}
@@ -24,7 +24,7 @@ const Card = ({ title, description, imageSrc }) => {
       size='md'
       textAlign="left"
       cursor="pointer" 
-      color="black"
+      color="lightgrey"
       px="6px"
       className="cardHeading"
       >
@@ -39,7 +39,7 @@ const Card = ({ title, description, imageSrc }) => {
       <HStack
         spacing="0">
         <Text 
-        color="black"
+        color="lightgrey"
         fontSize="12px"
         cursor="pointer"
         p="6px"
@@ -49,7 +49,7 @@ const Card = ({ title, description, imageSrc }) => {
         <FontAwesomeIcon 
         icon={faArrowRight}
         size="1x" 
-        color="black"
+        color="lightgrey"
         cursor="pointer"
         />
       </HStack>

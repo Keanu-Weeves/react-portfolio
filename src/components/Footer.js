@@ -13,9 +13,9 @@ const Footer = () => {
           alignItems="center"
           maxWidth="1024px"
           height={16}
-          borderTop="4px double white"
+          borderTop="4px double orange"
         >
-          <p>Pete • © 2022</p>
+          <p>Cody • © 2025</p>
         </Flex>
       </footer>
     </Box>
