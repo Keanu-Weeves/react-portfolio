@@ -14,8 +14,6 @@ body,html {
 
 .highlightStyles {
   animation: forwards slide 8s;
-  transform: translateX(37%);
-  
 }
 
 @keyframes slide {
