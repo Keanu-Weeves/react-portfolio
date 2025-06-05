@@ -31,9 +31,8 @@ const ContactMeSection = () => {
       type: '',
       comment: ''
     },
-    onSubmit: (values, { resetForm }) => {
-      submit("/", values);
-      resetForm();
+    onSubmit: async (values, { resetForm }) => {
+      await submit("/", values);
     },
     validationSchema: Yup.object({
       firstName: Yup.string().max(15, 'Must be 15 characters or less').required("Required"),
