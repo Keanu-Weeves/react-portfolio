@@ -6,72 +6,60 @@ import {
   AlertDialogHeader,
   AlertDialogBody,
   AlertDialogFooter,
-  AlertDialogCloseButton,
+  AlertDialogCloseButton, // Ensure this is imported for the close button
   Button,
-  Flex, // You might need Flex or Box for layout
-  Text,
-  Heading,
+  Text, // Needed for displaying the message body
 } from '@chakra-ui/react';
 import { useAlertContext } from '../context/alertContext';
-import { useRef } from 'react'; // <--- ADD THIS LINE
-// import { Text, Heading } from '@chakra-ui/react'; // Ensure these are also imported if used
+import { useRef } from 'react';
 
-const Alert = ({ onClose, isOpen, message }) => { // message here is an object {type, description}
+const Alert = () => { // <--- Remove the props here, the component will rely on context only
   const cancelRef = useRef();
 
-  // You are using the useAlertContext to get isOpen, type, and message.
-  // So, the props passed to Alert component (`onClose`, `isOpen`, `message`)
-  // might be redundant or could lead to confusion.
-  // Let's use the context values directly as intended.
+  // Get all necessary values directly from the alert context
   const {
-    isOpen: contextIsOpen, // Rename to avoid prop/context name conflict
-    type: contextType,
-    message: contextMessage,
-    onClose: contextOnClose
+    isOpen,  // This is the boolean for whether the alert is open
+    type,    // This is the string 'success' or 'error'
+    message, // This is the actual message string (e.g., "Thanks for...")
+    onClose  // This is the function to close the alert
   } = useAlertContext();
 
-  // Use context values
-  const displayIsOpen = isOpen || contextIsOpen; // Prioritize prop if provided, else context
-  const displayType = contextType;
-  const displayMessage = contextMessage;
-  const handleClose = onClose || contextOnClose; // Prioritize prop if provided, else context
+  // If the alert is not open, don't render anything
+  if (!isOpen) return null;
 
-
-  if (!displayIsOpen) return null; // Use the combined open state
-
-  // Determine success/error for styling
-  const isSuccess = displayType === 'success';
+  // Determine if it's a success or error for dynamic styling and text
+  const isSuccess = type === 'success'; // Correctly uses the 'type' string from context
 
   return (
     <AlertDialog
-      isOpen={displayIsOpen}          // Use the combined open state
-      leastDestructiveRef={cancelRef} // Required for AlertDialog
-      onClose={handleClose}           // Use the combined close handler
-      isCentered                     // Optional: to center the dialog
+      isOpen={isOpen}          // Use the isOpen from context
+      leastDestructiveRef={cancelRef}
+      onClose={onClose}        // Use the onClose from context
+      isCentered              // Optional: Centers the dialog on the screen
     >
-      <AlertDialogOverlay /> {/* This is the backdrop */}
+      <AlertDialogOverlay /> {/* This creates the dimming backdrop */}
 
       <AlertDialogContent
-        maxW="md" // Set a max-width
+        maxW="md" // Set a maximum width for better readability
         p={6}
         textAlign="center"
         borderRadius="md"
-        // Dynamic background and text color based on message type
-        bg={isSuccess ? 'green.100' : 'red.100'}
+        // Dynamic background and text color based on the alert type
+        bg={isSuccess ? 'green.100' : 'red.100'} // Chakra's color palette
         color={isSuccess ? 'green.800' : 'red.800'}
       >
-        <AlertDialogCloseButton /> {/* Optional close button */}
+        <AlertDialogCloseButton /> {/* Provides a small 'X' button to close */}
 
         <AlertDialogHeader fontSize="lg" fontWeight="bold">
-          {displayMessage?.type === "success" ? "All good!" : "Oops!"}
+          {isSuccess ? "All good!" : "Oops!"} {/* CORRECTED: Uses isSuccess directly */}
         </AlertDialogHeader>
 
         <AlertDialogBody>
-          <Text>{displayMessage?.description}</Text>
+          <Text>{message}</Text> {/* CORRECTED: Directly uses the 'message' string */}
         </AlertDialogBody>
 
         <AlertDialogFooter justifyContent="center">
-          <Button ref={cancelRef} onClick={handleClose} colorScheme="gray">
+          <Button ref={cancelRef} onClick={onClose} colorScheme="gray">
             Close
           </Button>
         </AlertDialogFooter>

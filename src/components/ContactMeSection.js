@@ -102,7 +102,7 @@ const ContactMeSection = () => {
               >
                 <FormLabel htmlFor="type" color="white">Type of Enquiry</FormLabel>
                 <Select
-                  color="white"
+                  color="black"
                   className="options"
                   id="type"
                   name="type"
