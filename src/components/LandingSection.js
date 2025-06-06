@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Heading, VStack } from "@chakra-ui/react";
+import { Avatar, Heading, VStack, Text } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import '../styles.css';
 import myProfilePic from '../images/20250605_141325.jpg';
@@ -24,11 +24,6 @@ const greetStyles = {
   fontStyle: "italic"
 }
 
-const textStyles = {
-  textAlign: "center"
-}
-
-
 const LandingSection = () => (
 
   <FullScreenSection
@@ -38,20 +33,17 @@ const LandingSection = () => (
     backgroundColor="#353445"
   >
 
-  <VStack>
+  <VStack spacing={4}>
     <Avatar style={picStyles} src={myProfilePic} />
-      <p style={greetStyles}>{greeting}</p>
-      <br></br>
-    <Heading >
-      <h3 style={textStyles}>{bio1}</h3>
-      <h3 style={textStyles}>{bio2}</h3>
-      <h3 className='highlightStyles'>{highlight}</h3>
-      
-    </Heading>
-  </VStack>
-   
-    
-
+      <Text style={greetStyles}>{greeting}</Text>
+      <Heading as="h2" size="2xl" textAlign="center" >
+        <Text>{bio1}</Text>
+        <Text>
+          {bio2}
+          <Text as="span" className='highlightStyles'>{highlight}</Text>
+        </Text> 
+      </Heading>
+    </VStack>
   </FullScreenSection>
 );
 
