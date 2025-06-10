@@ -36,14 +36,17 @@ const ProjectsSection = () => {
       spacing={8}
       
     >
-      <Heading  as="h1" id="projects-section"
-      color="lightgrey" textAlign={{base: 'center', md: 'left' }} ml="2em">
-        Featured Projects
-      </Heading>
+      <Box width="100%" display="flex" justifyContent={{ base: 'center', md: 'left' }} alignItems="center">
+        <Heading  as="h1" id="projects-section"
+        color="lightgrey" textAlign={{ base: 'center', md: 'left' }}>
+          Featured Projects
+        </Heading>
+      </Box>
       <Box
         display="grid"
         gridTemplateColumns={{ base: '1fr', md: 'repeat(2, minmax(0, 1fr))' }}
         gridGap={8}
+        mx="1em"
       >
         {projects.map((project) => (
           <Card

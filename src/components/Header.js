@@ -141,8 +141,8 @@ const Header = () => {
           <DrawerOverlay /> {/* This is the backdrop */}
 
           <DrawerContent
-          backgroundColor="#18181b"> {/* This is the main drawer panel */}
-            <DrawerCloseButton color="orange" /> {/* This is the close button */}
+          backgroundColor="#18181b">
+            <DrawerCloseButton color="orange" /> 
             <DrawerHeader color="white">Socials</DrawerHeader>
             <DrawerBody>
               <VStack spacing={6}>

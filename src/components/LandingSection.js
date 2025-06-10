@@ -9,14 +9,14 @@ import myProfilePic from '../images/20250605_141325.jpg';
 const greeting = "Hello, I am Cody!";
 const bio1 = "A frontend developer";
 const bio2 = "specialised in "
-const highlight = 'React'
+const highlight = "React"
 
 //Styles
 const picStyles = {
   border: "1px solid black",
   height: "100px",
   width: "100px",
-  boxShadow: "5px 5px 10px rgba(0, 0, 0, 1)" 
+  boxShadow: "0px 0px 16px rgba(255, 165, 0, 1)" 
 }
 
 const greetStyles = {

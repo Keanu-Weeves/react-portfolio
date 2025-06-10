@@ -14,6 +14,7 @@ const Card = ({ title, description, imageSrc }) => {
     background="a9a9a9"
     borderRadius="8px"
     align="left"
+    mx="1.5em"
     boxShadow="0px 0px 18px rgba(255, 165, 0, 1)"
     className="card"
     >

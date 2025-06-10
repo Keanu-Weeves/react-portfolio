@@ -24,6 +24,7 @@ const ContactMeSection = () => {
   const { isLoading, response, submit } = useSubmit();
   const { onOpen } = useAlertContext();
 
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -59,11 +60,11 @@ const ContactMeSection = () => {
       py={16}
       spacing={8}
     >
-      <VStack w="1024px" p={{ base: 64, md: 32 }} alignItems="flex-start">
-        <Heading color="white" as="h1" id="contactme-section" className="contactHeading">
+      <VStack w="100vw" p={{ base: 4, md: 0}} alignItems="flex-start">
+        <Heading color="white" as="h1" id="contactme-section" textAlign={{ base: 'center', md: 'left' }} className="contactHeading">
           Contact me
         </Heading>
-        <Box color="white" p={6} rounded="md" w="100%">
+        <Box color="white" rounded="md" w="100%">
           <form className="form" onSubmit={formik.handleSubmit}>
             <VStack spacing={8}>
               {/* Name Field */}
@@ -72,7 +73,7 @@ const ContactMeSection = () => {
               >
                 <FormLabel color="white" htmlFor="firstName">Name</FormLabel>
                 <Input
-                  color="white"
+                  color="orange"
                   className="firstName"
                   id="firstName"
                   name="firstName"
@@ -87,7 +88,7 @@ const ContactMeSection = () => {
               >
                 <FormLabel htmlFor="email" color="white">Email Address</FormLabel>
                 <Input
-                  color="white"
+                  color="orange"
                   id="email"
                   name="email"
                   type="email"
@@ -102,7 +103,7 @@ const ContactMeSection = () => {
               >
                 <FormLabel htmlFor="type" color="white">Type of Enquiry</FormLabel>
                 <Select
-                  color="black"
+                  color="orange"
                   className="options"
                   id="type"
                   name="type"
@@ -124,7 +125,7 @@ const ContactMeSection = () => {
               >
                 <FormLabel htmlFor="comment" color="white">Your message</FormLabel>
                 <Textarea
-                  color="white"
+                  color="orange"
                   id="comment"
                   name="comment"
                   height={250}
