@@ -15,7 +15,7 @@ const Footer = () => {
           height={16}
           borderTop="4px double orange"
         >
-          <p>Cody • © 2025</p>
+          <p>Cody Edwards • © 2025</p>
         </Flex>
       </footer>
     </Box>

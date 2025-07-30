@@ -2,7 +2,7 @@ import React from "react";
 import {
   Box,
   HStack,
-  VStack, 
+  VStack,
   Button,
   Drawer,              // main Drawer component
   DrawerBody,          // content area
@@ -11,8 +11,8 @@ import {
   DrawerHeader,        // title inside the drawer
   DrawerOverlay,       // background overlay
   useDisclosure,
-  Link,                
-  Text,                
+  Link,
+  Text,
 } from "@chakra-ui/react";
 import { forwardRef, useRef, useState, useEffect } from "react";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -60,7 +60,7 @@ const socials = [
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef(); 
+  const btnRef = React.useRef();
 
   const headerRef = useRef(null);
   const [prevScrollY, setPrevScrollY] = useState(0);
@@ -87,10 +87,10 @@ const Header = () => {
       }
 
       if (currentScrollY > prevScrollY && currentScrollY > 200) {
-        
+
         setIsVisible(false);
       } else if (currentScrollY < prevScrollY) {
-       
+
         setIsVisible(true);
       }
 
@@ -107,11 +107,11 @@ const Header = () => {
   return (
     <Box
     ref={headerRef}
-    position="fixed" 
-    top={0} 
-    left={0} 
-    right={0} 
-    zIndex={100} 
+    position="fixed"
+    top={0}
+    left={0}
+    right={0}
+    zIndex={100}
     backgroundColor="#18181b"
     transform={isVisible ? 'translateY(0)' : 'translateY(-200px)'}
     transitionProperty= "transform"
@@ -125,7 +125,6 @@ const Header = () => {
         py={4}
         justifyContent="space-between"
         alignItems="center"
-      
       >
         <a href="#projects" className="link" onClick={handleClick("projects")}>Projects</a>
         <a href="#contactme" className="link" onClick={handleClick("contactme")}>Contact Me</a>
@@ -142,7 +141,7 @@ const Header = () => {
 
           <DrawerContent
           backgroundColor="#18181b">
-            <DrawerCloseButton color="orange" /> 
+            <DrawerCloseButton color="orange" _hover={{ transform: 'rotate(360deg)'}}/>
             <DrawerHeader color="white">Socials</DrawerHeader>
             <DrawerBody>
               <VStack spacing={6}>

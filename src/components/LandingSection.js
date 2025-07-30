@@ -40,8 +40,8 @@ const LandingSection = () => (
         <Text>{bio1}</Text>
         <Text>
           {bio2}
-          <Text as="span" className='highlightStyles'>{highlight}</Text>
-        </Text> 
+          <Text as="span" id='highlightStyles'>React</Text>
+        </Text>
       </Heading>
     </VStack>
   </FullScreenSection>

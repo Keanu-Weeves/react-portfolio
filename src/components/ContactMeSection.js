@@ -60,7 +60,7 @@ const ContactMeSection = () => {
       py={16}
       spacing={8}
     >
-      <VStack w="100vw" p={{ base: 4, md: 0}} alignItems="flex-start">
+      <VStack w="50vw" p={{ base: 4, md: 0}} alignItems="flex-start" id="form-container">
         <Heading color="white" as="h1" id="contactme-section" textAlign={{ base: 'center', md: 'left' }} className="contactHeading">
           Contact me
         </Heading>
@@ -138,7 +138,10 @@ const ContactMeSection = () => {
                 type="submit"
                 backgroundColor='white'
                 className="submitButton"
-                width="full"
+                width="50%"
+                p="12px"
+                borderRadius='16px'
+                _hover={{ boxShadow: "0px 0px 18px rgba(255, 165, 0, .25)" }}
                 isLoading={isLoading}
               >
                 Submit
