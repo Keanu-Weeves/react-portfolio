@@ -112,7 +112,7 @@ const ContactMeSection = () => {
                   <option value="">Select an option</option>
                   <option value="hireMe">Freelance project proposal</option>
                   <option value="openSource">
-                    Open source consultancy session
+                    Employment Enquiry
                   </option>
                   <option value="other">Other</option>
                 </Select>
