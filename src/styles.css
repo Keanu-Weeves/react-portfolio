@@ -13,7 +13,6 @@ body,html {
 
 #highlightStyles {
   color: orange;
-  text-align:left;
   animation: appear 3s ease-in;
 }
 
