@@ -13,7 +13,7 @@ const projects = [
   {
     title: "brAIn-e  (AI Educational Tutor) ",
     description:"Meet brAIn-e! A work in progress AI - private personal project so details are under wraps, but follow along!",
-    url: 'https://aiedututor.netlify.app/',
+    url: 'https://brain-e.netlify.app/',
     getImageSrc: () => require("../images/brAIn-e-logo.png"),
   },
   {
