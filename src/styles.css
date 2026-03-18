@@ -53,24 +53,24 @@ body,html {
   transform: scale(1.03);
 }
 
-.navIcons:hover {
+/* .navIcons:hover {
   transform: scale(1.1);
   color: orange;
-}
+} */
 
-.link {
+/* .link {
   color: white;
 }
 
 .link:hover {
   transform: scale(1.03);
   color: orange;
-}
+} */
 
-.socials-btn:hover{
+/* .socials-btn:hover{
   transform: scale(1.03);
   color: orange;
-}
+} */
 
 @media (max-width: 767px) {
   body {

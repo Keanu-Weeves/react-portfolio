@@ -1,36 +1,70 @@
-// src/theme.js
-// For Chakra UI v2, you import 'extendTheme'
 import { extendTheme } from '@chakra-ui/react';
 
-// Create your theme using extendTheme
 const theme = extendTheme({
-  // You can define your custom colors, fonts, components, etc., here.
-  // This structure is compatible with Chakra UI v2.
-
+  // Force dark mode to align with the Obsidian background
+  config: {
+    initialColorMode: 'dark',
+    useSystemColorMode: false,
+  },
+  
   colors: {
-    brand: {
-      900: '#1a365d',
-      800: '#153e75',
-      700: '#2a69ac',
+    // The core dark aesthetic for cards, panels, and overlays
+    obsidian: {
+      900: '#0F172A', // Deepest background wash
+      800: '#1E293B', // Glassmorphic card backgrounds
+      700: '#334155', // Lighter borders and subtle dividers
+    },
+    // The light trail colors pulled directly from your headshot
+    accent: {
+      cyan: '#00F0FF',      // High-energy glowing cyan
+      cyanHover: '#5CFAFF', // Lighter cyan for active hover states
+      blue: '#0057FF',      // Deep electric blue for secondary elements
     },
   },
+  
   fonts: {
+    // Kept your current fonts, but added a 'mono' option 
+    // which is great for styling technical skills or code snippets!
     heading: `'Open Sans', sans-serif`,
     body: `'Raleway', sans-serif`,
+    mono: `'Fira Code', 'Courier New', monospace`, 
   },
-  // Example of how you'd define custom component styles in v2:
-  // components: {
-  //   Button: {
-  //     baseStyle: {
-  //       fontWeight: 'bold',
-  //     },
-  //     variants: {
-  //       solid: (props) => ({
-  //         bg: props.colorMode === 'dark' ? 'teal.300' : 'teal.500',
-  //       }),
-  //     },
-  //   },
-  // },
+  
+  components: {
+    Button: {
+      baseStyle: {
+        fontWeight: 'bold',
+        borderRadius: 'md',
+      },
+      variants: {
+        // Use this for secondary buttons (like "GitHub Repo")
+        glow: {
+          bg: 'transparent',
+          color: 'accent.cyan',
+          border: '1px solid',
+          borderColor: 'accent.cyan',
+          boxShadow: '0 0 10px rgba(0, 240, 255, 0.1)',
+          transition: 'all 0.3s ease-in-out',
+          _hover: {
+            bg: 'rgba(0, 240, 255, 0.1)',
+            boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)',
+            transform: 'translateY(-2px)', // Gives a nice physical "lift"
+          },
+        },
+        // Use this for primary calls to action (like "View Live Project")
+        solidTech: {
+          bg: 'accent.cyan',
+          color: 'obsidian.900', // Dark text on bright button for contrast
+          transition: 'all 0.3s ease-in-out',
+          _hover: {
+            bg: 'accent.cyanHover',
+            transform: 'translateY(-2px)',
+            boxShadow: '0 0 15px rgba(0, 240, 255, 0.4)',
+          }
+        }
+      },
+    },
+  },
 });
 
 export default theme;
