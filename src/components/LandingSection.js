@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Heading, VStack, Text, Image, Button } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
-import myProfilePic from '../images/cody-profile-img.png'; // Make sure to have this image in the correct path
+import myProfilePic from '../images/cody-profile-img.png'; 
 
 const LandingSection = () => {
   // A quick handler to smoothly scroll to the projects section when click the CTA
@@ -19,7 +19,8 @@ const LandingSection = () => {
       // transparent so global geometric background shines through
       backgroundColor="transparent" 
       p={8}
-    >
+      pt={{ base: "120px", md: "80px" }}
+          >
       <VStack spacing={8} textAlign="center">
         
         {/* --- The Upgraded Profile Image --- */}
@@ -46,7 +47,7 @@ const LandingSection = () => {
           />
         </Box>
 
-        {/* --- The Copy & Typography --- */}
+
         <VStack spacing={4}>
           <Text 
             color="accent.cyan" 
@@ -80,9 +81,8 @@ const LandingSection = () => {
           </Text>
         </VStack>
 
-        {/* --- The Call to Action --- */}
         <Button 
-          variant="solidTech" // Using the custom theme variant we built
+          variant="solidTech" // the custom theme variant
           size="lg" 
           mt={4} 
           px={8}

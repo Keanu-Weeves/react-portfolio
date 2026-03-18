@@ -14,7 +14,7 @@ function App() {
     <ChakraProvider theme={theme}>
       <AlertProvider>
         <Box 
-          bgImage="url('/geometric-tech-bg.png')" // Make sure the image is in public folder!
+          bgImage="url('/geometric-tech-bg.png')"
           bgPosition="center"
           bgRepeat="no-repeat"
           bgSize="cover"
@@ -26,7 +26,7 @@ function App() {
             content: '""',
             position: "absolute",
             top: 0, right: 0, bottom: 0, left: 0,
-            bg: "rgba(15, 23, 42, 0.85)", 
+            bg: "rgba(15, 23, 42, 0.4)", 
             zIndex: 0,
           }}
         >

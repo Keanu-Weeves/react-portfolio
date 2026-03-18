@@ -5,25 +5,21 @@ import {
   Button,
   Heading,
   VStack,
-  // --- CORRECTED IMPORTS FOR CHAKRA UI V2 FORMS ---
-  FormControl,       // Replaces Field.Root
-  FormLabel,         // Replaces Field.Label
-  FormErrorMessage,  // Replaces FieldErrorText
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
   Input,
-  Select,            // Keep Select if you're using the Chakra UI Select
+  Select,
   Textarea,
-  // --- END CORRECTED IMPORTS ---
+  Text
 } from "@chakra-ui/react";
 import * as Yup from 'yup';
 import FullScreenSection from "./FullScreenSection";
-import useSubmit from "../hooks/useSubmit";
 import { useAlertContext } from "../context/alertContext";
-import '../styles.css'
 
 const ContactMeSection = () => {
-  const { isLoading, response, submit } = useSubmit();
-  const { onOpen } = useAlertContext();
 
+  const { onOpen } = useAlertContext();
 
   const formik = useFormik({
     initialValues: {
@@ -33,8 +29,26 @@ const ContactMeSection = () => {
       comment: ''
     },
     onSubmit: async (values, { resetForm }) => {
-      console.log("DEBUG: Formik onSubmit fired with values:", values);
-      await submit("/", values);
+      //native Fetch API
+      try {
+        const response = await fetch("https://formspree.io/f/xyknlvyy", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (response.ok) {
+          onOpen('success', "Thanks for reaching out! I will get back to you soon.");
+          resetForm();
+        } else {
+          onOpen('error', "Oops! Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        onOpen('error', "Network error. Please check your connection.");
+      }
     },
     validationSchema: Yup.object({
       firstName: Yup.string().max(15, 'Must be 15 characters or less').required("Required"),
@@ -44,108 +58,122 @@ const ContactMeSection = () => {
     }),
   });
 
-  useEffect(() => {
-    if (response) {
-      onOpen(response.type, response.message);
-      if (response.type === 'success') {
-        formik.resetForm();
-      }
-    }
-  }, [response, onOpen, formik.resetForm]);
-
   return (
     <FullScreenSection
       isDarkBackground
-      backgroundColor="#353445"
+      backgroundColor="transparent"
       py={16}
       spacing={8}
     >
-      <VStack w="50vw" p={{ base: 4, md: 0}} alignItems="flex-start" id="form-container">
-        <Heading color="white" as="h1" id="contactme-section" textAlign={{ base: 'center', md: 'left' }} className="contactHeading">
-          Contact me
+      <VStack w="100%" maxW="800px" p={{ base: 4, md: 8 }} alignItems="center" id="form-container">
+        
+        <Heading 
+          as="h2" 
+          id="contactme-section" 
+          color="white" 
+          fontSize={{ base: "3xl", md: "4xl" }}
+          mb={8}
+        >
+          Let's <Text as="span" color="accent.cyan">Connect</Text>
         </Heading>
-        <Box color="white" rounded="md" w="100%">
-          <form className="form" onSubmit={formik.handleSubmit}>
-            <VStack spacing={8}>
-              {/* Name Field */}
-              <FormControl
-                isInvalid={formik.errors.firstName && formik.touched.firstName}
-              >
-                <FormLabel color="white" htmlFor="firstName">Name</FormLabel>
+
+        {/* --- GLASSMORPHIC FORM CONTAINER --- */}
+        <Box 
+          w="100%" 
+          bg="rgba(15, 23, 42, 0.4)" // Semi-transparent obsidian
+          backdropFilter="blur(12px)" // Frosted glass effect
+          border="1px solid"
+          borderColor="whiteAlpha.200"
+          borderRadius="2xl"
+          p={{ base: 6, md: 10 }}
+          boxShadow="xl"
+        >
+          <form onSubmit={formik.handleSubmit}>
+            <VStack spacing={6}>
+              
+              <FormControl isInvalid={formik.errors.firstName && formik.touched.firstName}>
+                <FormLabel color="whiteAlpha.900" htmlFor="firstName">Name</FormLabel>
                 <Input
-                  color="orange"
-                  className="firstName"
                   id="firstName"
                   name="firstName"
+                  bg="rgba(0,0,0,0.2)" // Slightly dark inset feel
+                  border="1px solid"
+                  borderColor="whiteAlpha.300"
+                  focusBorderColor="accent.cyan" // Glows cyan when typing
+                  color="white"
                   {...formik.getFieldProps('firstName')}
                 />
                 <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
               </FormControl>
 
-              {/* Email Field */}
-              <FormControl
-                isInvalid={formik.errors.email && formik.touched.email}
-              >
-                <FormLabel htmlFor="email" color="white">Email Address</FormLabel>
+              <FormControl isInvalid={formik.errors.email && formik.touched.email}>
+                <FormLabel htmlFor="email" color="whiteAlpha.900">Email Address</FormLabel>
                 <Input
-                  color="orange"
                   id="email"
                   name="email"
                   type="email"
+                  bg="rgba(0,0,0,0.2)"
+                  border="1px solid"
+                  borderColor="whiteAlpha.300"
+                  focusBorderColor="accent.cyan"
+                  color="white"
                   {...formik.getFieldProps('email')}
                 />
                 <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
               </FormControl>
 
-              {/* Type of Enquiry Field */}
-              <FormControl
-                isInvalid={formik.errors.type && formik.touched.type}
-              >
-                <FormLabel htmlFor="type" color="white">Type of Enquiry</FormLabel>
+              <FormControl isInvalid={formik.errors.type && formik.touched.type}>
+                <FormLabel htmlFor="type" color="whiteAlpha.900">Type of Inquiry</FormLabel>
                 <Select
-                  color="orange"
-                  className="options"
                   id="type"
                   name="type"
+                  bg="rgba(0,0,0,0.2)"
+                  border="1px solid"
+                  borderColor="whiteAlpha.300"
+                  focusBorderColor="accent.cyan"
+                  color="white"
+                  sx={{
+                    // Targets the dropdown options to ensure they are readable
+                    '> option': { background: '#0F172A', color: 'white' },
+                  }}
                   {...formik.getFieldProps('type')}
                 >
                   <option value="">Select an option</option>
                   <option value="hireMe">Freelance project proposal</option>
-                  <option value="openSource">
-                    Employment Enquiry
-                  </option>
+                  <option value="openSource">Employment Inquiry</option>
                   <option value="other">Other</option>
                 </Select>
                 <FormErrorMessage>{formik.errors.type}</FormErrorMessage>
               </FormControl>
 
-              {/* Your Message Field */}
-              <FormControl
-                isInvalid={formik.errors.comment && formik.touched.comment}
-              >
-                <FormLabel htmlFor="comment" color="white">Your message</FormLabel>
+              <FormControl isInvalid={formik.errors.comment && formik.touched.comment}>
+                <FormLabel htmlFor="comment" color="whiteAlpha.900">Your message</FormLabel>
                 <Textarea
-                  color="orange"
                   id="comment"
                   name="comment"
-                  height={250}
+                  height={200}
+                  bg="rgba(0,0,0,0.2)"
+                  border="1px solid"
+                  borderColor="whiteAlpha.300"
+                  focusBorderColor="accent.cyan"
+                  color="white"
                   {...formik.getFieldProps('comment')}
                 />
                 <FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
               </FormControl>
 
+              {/* Using custom tech button*/}
               <Button
+                variant="solidTech"
                 type="submit"
-                backgroundColor='white'
-                className="submitButton"
-                width="50%"
-                p="12px"
-                borderRadius='16px'
-                _hover={{ boxShadow: "0px 0px 18px rgba(255, 165, 0, .25)" }}
-                isLoading={isLoading}
+                width="full"
+                size="lg"
+                mt={4}
+                isLoading={formik.isSubmitting}
               >
-                Submit
+                Send Message
               </Button>
+
             </VStack>
           </form>
         </Box>

@@ -1,68 +1,62 @@
 import React from "react";
-import FullScreenSection from "./FullScreenSection";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import Card from "./Card";
+import FullScreenSection from "./FullScreenSection";
 
+// dropped the "Coming Soon" placeholders
 const projects = [
   {
-    title: "Little Lemon Restaurant app",
-    description:"Featuring a rotating carousel and a reserve table form with a pop-up modal. View live now and follow for updates!",
+    title: "Little Lemon Restaurant App",
+    description: "A frontend application featuring a dynamic rotating carousel and a robust table reservation system with modal validations.",
     url: 'https://littlelemonreactapp.netlify.app/',
     getImageSrc: () => require("../images/LittleLemonThumb.png"),
+    tags: ["React", "UX/UI", "State Management"] // Added tech tags
   },
   {
-    title: "brAIn-e  (AI Educational Tutor) ",
-    description:"Meet brAIn-e! A work in progress AI - private personal project so details are under wraps, but follow along!",
+    title: "brAIn-e (AI Educational Tutor)",
+    description: "An interactive educational platform designed for children. Currently in active development focusing on custom AI logic and seamless user flows.",
     url: 'https://brain-e.netlify.app/',
-    getImageSrc: () => require("../images/brAIn-e-logo.png"),
-  },
-  {
-    title: "Coming Soon",
-    description: "",
-    url: null,
-    getImageSrc: () => require("../images/coming-soon.jpg"),
-  },
-  {
-    title: "Coming Soon",
-    description: "",
-    url: null,
-    getImageSrc: () => require("../images/coming-soon.jpg"),
-  },
+    getVideoSrc: () => require("../images/braine-animated.mp4"),
+    tags: ["React", "AI Integration", "EdTech"]
+  }
 ];
 
 const ProjectsSection = () => {
-
   return (
     <FullScreenSection
-      backgroundColor="#353445"
+      backgroundColor="transparent" // global background shine through
       isDarkBackground
       p={8}
-      alignItems="flex-start"
+      alignItems="center"
       spacing={8}
-
     >
-      <Box width="100%" display="flex" justifyContent={{ base: 'center', md: 'left' }} alignItems="center">
-        <Heading  as="h1" id="projects-section"
-        color="lightgrey" textAlign={{ base: 'center', md: 'left' }}>
-          Featured Projects
+      {/* maxW keeps the grid from stretching too far on giant monitors */}
+      <Box width="100%" maxW="1200px" mx="auto" pt={10}> 
+        <Heading 
+          as="h2" 
+          id="projects-section"
+          color="white" 
+          fontSize={{ base: "3xl", md: "4xl" }}
+          mb={10}
+          textAlign={{ base: 'center', md: 'left' }}
+        >
+          Featured <Text as="span" color="accent.cyan">Work</Text>
         </Heading>
-      </Box>
-      <Box
-        display="grid"
-        gridTemplateColumns={{ base: '1fr', md: 'repeat(2, minmax(0, 1fr))' }}
-        gridGap={8}
-        mx="1em"
-      >
-        {projects.map((project, index) => (
-          <Card
-            className="card"
-            key={index}
-            title={project.title}
-            description={project.description}
-            imageSrc={project.getImageSrc()}
-            url={project.url}
-          />
-        ))}
+
+        {/* SimpleGrid cleaner for responsive layouts than manual grid templates */}
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+          {projects.map((project, index) => (
+            <Card
+              key={index}
+              title={project.title}
+              description={project.description}
+              imageSrc={project.getImageSrc ? project.getImageSrc() : null}
+              videoSrc={project.getVideoSrc ? project.getVideoSrc() : null}
+              url={project.url}
+              tags={project.tags}
+            />
+          ))}
+        </SimpleGrid>
       </Box>
     </FullScreenSection>
   );

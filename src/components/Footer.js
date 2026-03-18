@@ -1,24 +1,34 @@
 import React from "react";
-import {Box, Flex} from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 const Footer = () => {
   return (
-    <Box backgroundColor="#18181b">
+    <Box 
+      bg="rgba(15, 23, 42, 0.75)" 
+      backdropFilter="blur(12px)" // Matches the header
+      borderTop="1px solid"
+      borderColor="rgba(0, 240, 255, 0.15)"
+      position="relative"
+      zIndex={10}
+    >
       <footer>
         <Flex
           margin="0 auto"
           px={12}
-          color="white"
+          color="whiteAlpha.700"
           justifyContent="center"
           alignItems="center"
-          maxWidth="1024px"
+          maxWidth="1200px"
           height={16}
-          borderTop="4px double orange"
         >
-          <p>Cody Edwards • © 2025</p>
+          <Text fontFamily="mono" fontSize="sm" letterSpacing="widest">
+            {/* Dynamically gets the current year */}
+            Cody Edwards • © {new Date().getFullYear()}
+          </Text>
         </Flex>
       </footer>
     </Box>
   );
 };
+
 export default Footer;

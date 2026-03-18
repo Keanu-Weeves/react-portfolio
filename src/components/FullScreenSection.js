@@ -4,12 +4,18 @@ import { VStack } from "@chakra-ui/react";
 const FullScreenSection = ({ children, isDarkBackground, ...boxProps }) => {
   return (
     <VStack
-      backgroundColor={boxProps.backgroundColor}
       color={isDarkBackground ? "white" : "black"}
-      width="100vw"
+      width="100%" // Changed from 100vw to prevent scrollbar layout shifts
       overflowX="hidden"
+      {...boxProps} // This ensures backgroundColor="transparent" applies correctly to the main container
     >
-      <VStack maxWidth={{ base: "100%", lg: "1280px" }} minHeight="100vh" {...boxProps}>
+
+      <VStack 
+        maxWidth={{ base: "100%", lg: "1200px" }} 
+        minHeight="100vh" 
+        w="100%"
+        justifyContent="center" // Keeps content vertically centered by default
+      >
         {children}
       </VStack>
     </VStack>
