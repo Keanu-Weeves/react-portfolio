@@ -14,7 +14,7 @@ const theme = extendTheme({
       800: '#1E293B', // Glassmorphic card backgrounds
       700: '#334155', // Lighter borders and subtle dividers
     },
-    // The light trail colors pulled directly from your headshot
+    // The light trail colors pulled directly from headshot
     accent: {
       cyan: '#00F0FF',      // High-energy glowing cyan
       cyanHover: '#5CFAFF', // Lighter cyan for active hover states
@@ -23,8 +23,7 @@ const theme = extendTheme({
   },
   
   fonts: {
-    // Kept your current fonts, but added a 'mono' option 
-    // which is great for styling technical skills or code snippets!
+    // Kept current fonts, but added a 'mono' option for any code snippets or technical details in the future
     heading: `'Open Sans', sans-serif`,
     body: `'Raleway', sans-serif`,
     mono: `'Fira Code', 'Courier New', monospace`, 
@@ -37,7 +36,7 @@ const theme = extendTheme({
         borderRadius: 'md',
       },
       variants: {
-        // Use this for secondary buttons (like "GitHub Repo")
+        //  for secondary buttons (like "GitHub Repo")
         glow: {
           bg: 'transparent',
           color: 'accent.cyan',
@@ -51,7 +50,7 @@ const theme = extendTheme({
             transform: 'translateY(-2px)', // Gives a nice physical "lift"
           },
         },
-        // Use this for primary calls to action (like "View Live Project")
+        //for primary calls to action (like "View Live Project")
         solidTech: {
           bg: 'accent.cyan',
           color: 'obsidian.900', // Dark text on bright button for contrast

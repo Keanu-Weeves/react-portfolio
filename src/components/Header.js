@@ -5,16 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
   faLinkedin,
-  faMedium,
-  faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
 
 const socials = [
   { id: 1, icon: faEnvelope, url: "mailto:edwards.cody51@yahoo.com", label: "Email" },
   { id: 2, icon: faGithub, url: "https://github.com/Keanu-Weeves", label: "Github" },
   { id: 3, icon: faLinkedin, url: "https://www.linkedin.com/in/cody-edwards-756769202", label: "LinkedIn" },
-  { id: 4, icon: faMedium, url: "https://medium.com", label: "Medium" },
-  { id: 5, icon: faStackOverflow, url: "https://stackoverflow.com", label: "StackOverflow" },
 ];
 
 const Header = () => {

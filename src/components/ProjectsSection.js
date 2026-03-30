@@ -3,13 +3,13 @@ import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import Card from "./Card";
 import FullScreenSection from "./FullScreenSection";
 
-// dropped the "Coming Soon" placeholders
+
 const projects = [
   {
     title: "Little Lemon Restaurant App",
     description: "A frontend application featuring a dynamic rotating carousel and a robust table reservation system with modal validations.",
     url: 'https://littlelemonreactapp.netlify.app/',
-    getImageSrc: () => require("../images/LittleLemonThumb.png"),
+    getVideoSrc: () => require("../images/carousel-menu.mp4"),
     tags: ["React", "UX/UI", "State Management"] // Added tech tags
   },
   {
@@ -18,6 +18,12 @@ const projects = [
     url: 'https://brain-e.netlify.app/',
     getVideoSrc: () => require("../images/braine-animated.mp4"),
     tags: ["React", "AI Integration", "EdTech"]
+  },
+  {
+    title: "Student Management System",
+    description: "A comprehensive GUI application built with JavaFX to manage student records, including CRUD operations, OOP, and relational data mapping.",
+    getVideoSrc: () => require("../images/java-recording.mp4"),
+    tags: ["Java", "JavaFX", "OOP", "Relational Data"]
   }
 ];
 
