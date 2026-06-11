@@ -24,6 +24,12 @@ const projects = [
     description: "A comprehensive GUI application built with JavaFX to manage student records, including CRUD operations, OOP, and relational data mapping.",
     getVideoSrc: () => require("../images/java-recording.mp4"),
     tags: ["Java", "JavaFX", "OOP", "Relational Data"]
+  },
+  {
+    title: "Dynamic Weather Dashboard",
+    description: "A real-time weather tracking application with a modern UI and comprehensive data visualization.",
+    getVideoSrc: () => require("../images/weather-dashboard.mp4"),
+    tags: ["JavaFX","Java", "UI/UX", "API Integration", "Data Visualization"]
   }
 ];
 

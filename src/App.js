@@ -8,33 +8,38 @@ import { AlertProvider } from "./context/alertContext";
 import Alert from "./components/Alert";
 import theme from './theme';
 import './styles.css';
+import InteractiveBackground from "./components/InteractiveBackground";
+import { motion } from "framer-motion";
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <AlertProvider>
+        <InteractiveBackground />
         <Box 
-          bgImage="url('/geometric-tech-bg.png')"
-          bgPosition="center"
-          bgRepeat="no-repeat"
-          bgSize="cover"
-          bgAttachment="fixed" 
+          bg="transparent"
           position="relative"
           minH="100vh"
-          _before={{
-            // adds the dark obsidian wash over the background
-            content: '""',
-            position: "absolute",
-            top: 0, right: 0, bottom: 0, left: 0,
-            bg: "rgba(15, 23, 42, 0.4)", 
-            zIndex: 0,
-          }}
         >
-          <Box as="main" position="relative" zIndex={1}>
+          <Box as="main" position="relative" zIndex={2} bg="transparent">
             <Header />
             <LandingSection />
-            <ProjectsSection />
-            <ContactMeSection />
+            <motion.div 
+            initial={{ opacity: 0, y: 50 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true, amount: 0.1 }} 
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <ProjectsSection />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <ContactMeSection />
+            </motion.div>
             <Footer />
             <Alert />
           </Box>

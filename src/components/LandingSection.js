@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react"; // 1. Import useState
 import { Box, Heading, VStack, Text, Image, Button } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import myProfilePic from '../images/cody-profile-img.png'; 
 
 const LandingSection = () => {
-  // A quick handler to smoothly scroll to the projects section when click the CTA
+  // 2. State to track when the user hovers the image
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleScrollToProjects = () => {
     const element = document.getElementById("projects-section");
     if (element) {
@@ -16,26 +18,27 @@ const LandingSection = () => {
     <FullScreenSection
       justifyContent="center"
       alignItems="center"
-      // transparent so global geometric background shines through
       backgroundColor="transparent" 
       p={8}
       pt={{ base: "120px", md: "80px" }}
-          >
+    >
       <VStack spacing={8} textAlign="center">
         
         {/* --- The Upgraded Profile Image --- */}
         <Box
+          onMouseEnter={() => setIsHovered(true)}   // 3. Trigger glow ON
+          onMouseLeave={() => setIsHovered(false)}  // 4. Trigger glow OFF
           borderRadius="full"
-          boxSize={{ base: "200px", md: "250px" }} // Responsive: slightly smaller on mobile
+          boxSize={{ base: "200px", md: "250px" }} 
           overflow="hidden"
           border="3px solid"
           borderColor="accent.cyan"
-          boxShadow="0 0 40px rgba(0, 240, 255, 0.4),
-          inset 0 0 20px rgba(0, 240, 255, 0.3)" // Deep cyan glow matching our theme
+          boxShadow="0 0 40px rgba(0, 240, 255, 0.4), inset 0 0 20px rgba(0, 240, 255, 0.3)" 
           transition="all 0.3s ease-in-out"
+          cursor="pointer" // Makes the image feel interactive
           _hover={{
-            boxShadow: "0 0 50px rgba(0, 240, 255, 0.6)",
-            transform: "scale(1.02)", // Subtle lift on hover
+            boxShadow: "0 0 60px rgba(0, 240, 255, 0.8)", // Extra bright shadow on hover
+            transform: "scale(1.02)", 
           }}
         >
           <Image 
@@ -47,7 +50,7 @@ const LandingSection = () => {
           />
         </Box>
 
-
+        {/* --- The Text Section (Reacts to the Image Hover) --- */}
         <VStack spacing={4}>
           <Text 
             color="accent.cyan" 
@@ -55,6 +58,8 @@ const LandingSection = () => {
             letterSpacing="widest" 
             textTransform="uppercase"
             fontWeight="bold"
+            transition="all 0.4s ease" // 5. Smooth transition for the glow
+            textShadow={isHovered ? "0 0 10px rgba(0, 240, 255, 0.8)" : "none"} // Conditional glow
           >
             Hello, I am Cody
           </Text>
@@ -62,19 +67,28 @@ const LandingSection = () => {
           <Heading 
             as="h1" 
             size={{ base: "2xl", md: "3xl" }} 
-            color="white"
+            color={isHovered ? "white" : "whiteAlpha.900"} // Brightens slightly
             lineHeight="shorter"
             fontWeight="800"
+            transition="all 0.4s ease"
           >
             Engineering Immersive <br />
-            <Text as="span" color="accent.cyan">Digital Experiences</Text>
+            <Text 
+              as="span" 
+              color="accent.cyan"
+              transition="all 0.4s ease"
+              textShadow={isHovered ? "0 0 25px rgba(0, 240, 255, 0.7)" : "none"} // Massive neon pop!
+            >
+              Digital Experiences
+            </Text>
           </Heading>
 
           <Text 
-            color="whiteAlpha.800" 
+            color={isHovered ? "white" : "whiteAlpha.800"} // Turns pure white on hover
             fontSize={{ base: "md", md: "xl" }} 
             maxWidth="550px"
             lineHeight="tall"
+            transition="all 0.4s ease"
           >
             A software developer specializing in React. From crafting interactive educational AI tools to building robust, responsive web applications, 
             I turn complex problems into elegant, scalable solutions.
@@ -82,7 +96,7 @@ const LandingSection = () => {
         </VStack>
 
         <Button 
-          variant="solidTech" // the custom theme variant
+          variant="solidTech" 
           size="lg" 
           mt={4} 
           px={8}
