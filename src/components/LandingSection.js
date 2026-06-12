@@ -2,6 +2,7 @@ import React, { useState } from "react"; // 1. Import useState
 import { Box, Heading, VStack, Text, Image, Button } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import myProfilePic from '../images/cody-profile-img.png'; 
+import { backgroundImage } from './InteractiveBackground';
 
 const LandingSection = () => {
   // 2. State to track when the user hovers the image
@@ -38,7 +39,8 @@ const LandingSection = () => {
           cursor="pointer" // Makes the image feel interactive
           _hover={{
             boxShadow: "0 0 60px rgba(0, 240, 255, 0.8)", // Extra bright shadow on hover
-            transform: "scale(1.02)", 
+            transform: "scale(1.02)",
+            backgroundImage: "opacity(1.5)", 
           }}
         >
           <Image 

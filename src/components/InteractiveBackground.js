@@ -1,3 +1,5 @@
+
+
 import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
@@ -21,27 +23,44 @@ const InteractiveBackground = () => {
       left="0"
       w="100vw"
       h="100vh"
-      bg="#0a101d" // deep Obsidian base
+      bg="#0a101d" 
       zIndex="1"
       overflow="hidden"
     >
+      {/* 1. The trailing ambient glow (Physics-based) */}
       <motion.div
         animate={{
-          x: mousePosition.x - 400, // Offsets by half the width/height to center the glow
+          x: mousePosition.x - 400, 
           y: mousePosition.y - 400,
         }}
         transition={{
           type: "tween",
           ease: "backOut",
-          duration: 0.5, // Creates a smooth, slightly delayed physics trailing effect
+          duration: 0.5, 
         }}
         style={{
           width: "800px",
           height: "800px",
-          background: "radial-gradient(circle, rgba(0, 240, 255, 0.25) 0%, rgba(0, 240, 255, 0.05) 30%, rgba(15, 23, 42, 0) 60%)",
+          background: "radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, rgba(15, 23, 42, 0) 60%)",
           borderRadius: "50%",
           position: "absolute",
-          pointerEvents: "none",
+        }}
+      />
+
+      {/* 2. The static electrified grid with a dynamic cursor mask */}
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        w="100%"
+        h="100%"
+        // Pure cyan grid lines
+        backgroundImage="linear-gradient(rgba(0, 240, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.2) 1px, transparent 1px)"
+        backgroundSize="40px 40px"
+        style={{
+          // This creates a window that only reveals the grid right where the mouse is
+          WebkitMaskImage: `radial-gradient(350px circle at ${mousePosition.x}px ${mousePosition.y}px, black 0%, transparent 100%)`,
+          maskImage: `radial-gradient(350px circle at ${mousePosition.x}px ${mousePosition.y}px, black 0%, transparent 100%)`,
         }}
       />
     </Box>

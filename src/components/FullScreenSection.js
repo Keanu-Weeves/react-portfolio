@@ -5,9 +5,9 @@ const FullScreenSection = ({ children, isDarkBackground, ...boxProps }) => {
   return (
     <VStack
       color={isDarkBackground ? "white" : "black"}
-      width="100%" // Changed from 100vw to prevent scrollbar layout shifts
+      width="100%" // prevent scrollbar layout shifts
       overflowX="hidden"
-      {...boxProps} // This ensures backgroundColor="transparent" applies correctly to the main container
+      {...boxProps} //ensures backgroundColor="transparent" applies to the main container
     >
 
       <VStack 
